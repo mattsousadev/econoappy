@@ -19,6 +19,12 @@ Execute o comando abaixo
 `pip install -r requirementes.txt`
 
 ### III. Rodando
+#### Usando o Uvicorn
+Execute o comando abaixo
+
+`uvicorn main:app --reload`
+
+#### Usando o Python
 Execute o comando abaixo
 
 `python3 main.py`
