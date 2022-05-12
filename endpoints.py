@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Response
 
 from request_models import InsertModel
 from response_models import *
@@ -16,7 +16,7 @@ async def list():
     )
 
 
-@endpoints.post('/', response_model=OperationInsertResponse)
+@endpoints.post('/', response_model=OperationInsertResponse, status_code=201)
 async def insert(insert_body:InsertModel):
     operations.append(insert_body)
     return OperationInsertResponse(
@@ -26,7 +26,7 @@ async def insert(insert_body:InsertModel):
     )
 
 
-@endpoints.delete('/{code}',response_model=OperationDeleteResponse)
+@endpoints.delete('/{code}', status_code=204)
 async def delete(code:str):
     try:
         to_delete = None
@@ -40,8 +40,4 @@ async def delete(code:str):
             operations.remove(to_delete)
     except ValueError:
         raise HTTPException(status_code=404, detail="Valor não encontrado")
-
-    return OperationDeleteResponse(
-        success=True
-        , message="Registro excluido com sucesso!"
-    )
+    return Response(status_code=204)
