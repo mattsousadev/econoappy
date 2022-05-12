@@ -12,6 +12,3 @@ class OperationListResponse(BaseResponse):
 class OperationInsertResponse(BaseResponse):
     data: Any
     message: str
-
-class OperationDeleteResponse(BaseResponse):
-    message: str
