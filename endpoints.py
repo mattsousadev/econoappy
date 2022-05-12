@@ -1,5 +1,7 @@
 from fastapi import APIRouter, HTTPException
 
+from request_models import InsertModel
+
 endpoints = APIRouter(prefix='/operation')
 
 operations = []
@@ -13,19 +15,27 @@ async def list():
     }
 
 
-@endpoints.post('/{vlr}')
-async def insert(vlr:float):
-    operations.append(vlr)
+@endpoints.post('/')
+async def insert(insert_body:InsertModel):
+    operations.append(insert_body)
     return{
         "success": True,
-        "data": vlr
+        "data": insert_body
     }
 
 
-@endpoints.delete('/{vlr}')
-async def delete(vlr:float):
+@endpoints.delete('/{code}')
+async def delete(code:str):
     try:
-        operations.remove(vlr)
+        to_delete = None
+        for operation in operations:
+            if operation.code == code:
+                to_delete = operation
+        
+        if to_delete is None:
+            raise ValueError
+        else:
+            operations.remove(to_delete)
     except ValueError:
         raise HTTPException(status_code=404, detail="Valor não encontrado")
 
