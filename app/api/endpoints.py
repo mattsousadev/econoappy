@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, Response
 
-from request_models import InsertModel
-from response_models import *
+from app.models.request_models import InsertModel
+from app.models.response_models import *
 
 endpoints = APIRouter(prefix='/operation')
 

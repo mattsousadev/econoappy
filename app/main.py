@@ -1,7 +1,7 @@
 import uvicorn
 from fastapi import FastAPI
 
-import endpoints
+from app.api import endpoints
 
 app = FastAPI()
 
@@ -11,5 +11,3 @@ async def root():
 
 app.include_router(endpoints.endpoints)
 
-if __name__ == '__main__':
-    uvicorn.run(app)
