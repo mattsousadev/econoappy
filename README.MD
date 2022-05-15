@@ -12,6 +12,7 @@ Instale os seguintes softwares
 
 - Python 3.8
 - PyPi 20.0.2
+- Pytest 7.1.2
 
 ### II. Instalando dependências
 Execute o comando abaixo
@@ -24,9 +25,9 @@ Execute o comando abaixo
 
 `uvicorn main:app --reload`
 
-#### Usando o Python
+Caso rode corretamente, acesse seu navegador no endereço http://localhost:8000/
+
+### IV. Testando
 Execute o comando abaixo
 
-`python3 main.py`
-
-Caso rode corretamente, acesse seu navegador no endereço http://localhost:8000/
+`pytest`
